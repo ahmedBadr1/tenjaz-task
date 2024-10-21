@@ -3,19 +3,13 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
-class UserFactory extends Factory
+class ProductFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
-
     /**
      * Define the model's default state.
      *
@@ -23,11 +17,13 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $name = fake()->word();
         return [
-            'name' => fake()->name(),
-            'username' => fake()->unique()->firstName(),
-            'avatar' => fake()->image(),
-            'password' => static::$password ??= Hash::make('password'),
+            'name' => $name,
+            'slug' => Str::slug($name),
+            'description' => fake()->realText(),
+            'image' => fake()->imageUrl(),
+            'price' => fake()->numberBetween(10, 100),
             'is_active' => fake()->boolean(),
         ];
     }
