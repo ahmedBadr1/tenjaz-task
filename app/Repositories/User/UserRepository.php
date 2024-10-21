@@ -34,14 +34,13 @@ class UserRepository implements UserRepositoryInterface
         return User::findOrFail($id);
     }
 
-    public function generateToken($user)
+    public function generateToken($user): string
     {
-        $token = $user->createToken('auth_token')->plainTextToken;
-        return $token;
+        return $user->createToken('auth_token')->plainTextToken;
     }
 
     // Logout user and revoke tokens
-    public function logout()
+    public function logout(): bool
     {
         $user = Auth::user();
         if ($user) {

@@ -3,12 +3,13 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
 
 class UserService
 {
     public function __construct(
-        protected UserRepositoryInterface $repository
+        protected UserRepository $repository
     ) {
     }
 
@@ -36,4 +37,15 @@ class UserService
     {
         return $this->repository->find($id);
     }
+
+    public function generateToken($user)
+    {
+        return $this->repository->generateToken($user);
+    }
+
+    public function logout()
+    {
+        return $this->repository->logout();
+    }
+
 }

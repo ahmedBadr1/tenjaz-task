@@ -6,7 +6,7 @@ use App\Repositories\CrudRepositoryInterface;
 
 interface UserRepositoryInterface extends CrudRepositoryInterface
 {
-    public function generateToken();
+    public function generateToken($user): string;
 
-    public function logout();
+    public function logout():bool;
 }

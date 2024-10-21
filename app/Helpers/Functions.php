@@ -1,7 +1,7 @@
 <?php
 
 if (!function_exists('successResponse')) {
-    function successResponse($message = 'Success', $data = [], $statusCode = 200): \Illuminate\Http\JsonResponse
+    function successResponse( $data = [],$message = 'Success', $statusCode = 200): \Illuminate\Http\JsonResponse
     {
         return response()->json([
             'status' => true,
@@ -12,12 +12,12 @@ if (!function_exists('successResponse')) {
 }
 
 if (!function_exists('errorResponse')) {
-    function errorResponse($message = 'An error occurred', $statusCode = 400, $data = []): \Illuminate\Http\JsonResponse
+    function errorResponse($message = 'An error occurred', $statusCode = 400, $errors = []): \Illuminate\Http\JsonResponse
     {
         return response()->json([
             'status' => false,
             'message' => $message,
-            'data' => $data,
+            'errors' => $errors,
         ], $statusCode);
     }
 }
