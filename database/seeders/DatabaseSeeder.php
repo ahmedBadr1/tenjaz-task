@@ -13,10 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Test User',
-            'username' => 'test',
-        ]);
+        User::factory()->normal()->create();
+        User::factory()->silver()->create();
+        User::factory()->gold()->create();
+
 
         $this->call(ProductSeeder::class);
     }

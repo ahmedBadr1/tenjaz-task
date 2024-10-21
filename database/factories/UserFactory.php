@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserTypes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -39,6 +40,34 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'is_active' => true,
+        ]);
+    }
+
+    /**
+     * generate normal user .
+     */
+    public function normal(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'type' => UserTypes::Normal->value,
+        ]);
+    }
+    /**
+     * generate silver user .
+     */
+    public function silver(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'type' => UserTypes::Silver->value,
+        ]);
+    }
+    /**
+     * generate gold user .
+     */
+    public function gold(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'type' => UserTypes::Gold->value,
         ]);
     }
 }
