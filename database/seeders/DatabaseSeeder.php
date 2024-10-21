@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'username' => 'test',
         ]);
+
+        $this->call(ProductSeeder::class);
     }
 }

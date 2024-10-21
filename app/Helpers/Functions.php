@@ -23,7 +23,7 @@ if (!function_exists('errorResponse')) {
 }
 
 if (!function_exists('uploadFile')) {
-    function uploadFile($file, $directory = 'avatars')
+    function uploadFile($file, $directory)
     {
         if ($file && $file->isValid()) {
             // generating file name using timestamp and original name

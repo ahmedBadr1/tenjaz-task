@@ -3,13 +3,14 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Repositories\Product\ProductRepository;
 use App\Repositories\User\ProductRepositoryInterface;
 use App\Repositories\User\UserRepositoryInterface;
 
 class ProductService
 {
     public function __construct(
-        protected ProductRepositoryInterface $repository
+        protected ProductRepository $repository
     ) {
     }
 

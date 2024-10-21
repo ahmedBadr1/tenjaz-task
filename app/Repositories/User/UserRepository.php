@@ -3,16 +3,18 @@
 namespace App\Repositories\User;
 
 use App\Models\User;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface
 {
-    public function all()
+    public function all() : ?Collection
     {
         return User::all();
     }
 
-    public function create(array $data)
+    public function create(array $data) :User
     {
         // Handle avatar upload if present
         if (isset($data['avatar'])) {
@@ -28,7 +30,7 @@ class UserRepository implements UserRepositoryInterface
         return User::create($data);
     }
 
-    public function update(array $data, $id)
+    public function update(array $data, $id) :User
     {
         $user = User::find($id);
         if ($user) {
