@@ -39,7 +39,7 @@ Install all the dependencies using npm
     npm install && npm run dev
 
 
-Run the database migrations (**Set the database connection in .env before migrating**)
+Run the database migrations (**make sure the connection is set in .env before migrating**)
 
     php artisan migrate
 
