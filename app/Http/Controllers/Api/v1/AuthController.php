@@ -49,11 +49,9 @@ class AuthController extends Controller
      */
     public function register(StoreUserRequest $request)
     {
-        $data = $request->validated();
-        // hashing password
-        $data['password'] = Hash::make($data['password']);
+
         // creating user
-        $user = $this->service->create($data);
+        $user = $this->service->create($request->validated());
 
         // Generate Token
         $token = $this->service->generateToken($user);

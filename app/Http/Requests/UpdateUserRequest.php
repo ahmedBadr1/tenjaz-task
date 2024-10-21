@@ -25,8 +25,8 @@ class UpdateUserRequest extends FormRequest
             "name" => "required|string|max:255",
             "username" => "required|string|max:255|unique:users",
             "avatar" => "nullable|image:jpeg,jpg,png|max:2048",
-            "password" => "required|string|min:8|confirmed",
-            "is_active" => "required|boolean",
+            "password" => "nullable|string|min:8|confirmed",
+            "is_active" => "nullable|boolean",
         ];
     }
 }

@@ -30,6 +30,10 @@ Generate a new application key
 
     php artisan key:generate
 
+Create Storage Link for uploaded files 
+
+    php artisan storage:link
+
 Install all the dependencies using npm
 
     npm install && npm run dev

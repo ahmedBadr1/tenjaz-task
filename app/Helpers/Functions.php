@@ -23,19 +23,13 @@ if (!function_exists('errorResponse')) {
 }
 
 if (!function_exists('uploadFile')) {
-    function uploadFile($file, $directory = 'uploads', $allowedExtensions = ['jpg', 'jpeg', 'png', 'pdf'])
+    function uploadFile($file, $directory = 'avatars')
     {
         if ($file && $file->isValid()) {
-            $extension = $file->getClientOriginalExtension();
-
-            // Validate the file extension
-            if (!in_array(strtolower($extension), $allowedExtensions)) {
-                return false;
-            }
-
+            // generating file name using timestamp and original name
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs($directory, $fileName, 'public');
-            return $path;
+            return $file->storeAs($directory, $fileName, 'public'); // 'public' disk is being used
+            // This will return something like "avatars/filename.jpg"
         }
         return false;
     }

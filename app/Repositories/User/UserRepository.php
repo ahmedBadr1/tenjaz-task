@@ -3,6 +3,7 @@
 namespace App\Repositories\User;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -13,23 +14,50 @@ class UserRepository implements UserRepositoryInterface
 
     public function create(array $data)
     {
+        // Handle avatar upload if present
+        if (isset($data['avatar'])) {
+
+            $avatarPath = uploadFile($data['avatar'], 'avatars');
+            if ($avatarPath) {
+                $data['avatar'] = $avatarPath;
+            }
+        }
+
+        // hashing password
+        $data['password'] = Hash::make($data['password']);
         return User::create($data);
     }
 
     public function update(array $data, $id)
     {
-        $user = User::findOrFail($id);
-        $user->update($data);
+        $user = User::find($id);
+        if ($user) {
+            // Handle avatar upload if present
+            if (isset($data['avatar'])) {
+                $avatarPath = uploadFile($data['avatar'], 'avatars');
+                if ($avatarPath) {
+                    $data['avatar'] = $avatarPath;
+                }
+            }
+            if (isset($data['password'])) {
+                $data['password'] = Hash::make($data['password']); // Hash new password if present
+            }
+            $user->update($data);
+        }
         return $user;
     }
 
-    public function delete($id)
+    public function delete($id): bool
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+            return true;
+        }
+        return false;
     }
 
-    public function find($id)
+    public function find($id): User
     {
         return User::findOrFail($id);
     }
