@@ -38,10 +38,10 @@ class AuthController extends Controller
             return successResponse([
                 'user' => UserResource::make($user),
                 'token' => $token
-            ], 'Login successful');
+            ], 'Successfully logged In');
         }
 
-        return errorResponse('Invalid credentials', 401);
+        return errorResponse('Invalid Credentials', 401);
     }
 
     /**
