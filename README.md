@@ -24,7 +24,7 @@ Copy the example env file and make the required configuration changes in the .en
 
 For using SQLite create a file named Database, it is already configured at .env file
 
-      touch database/database.sqlite
+    touch database/database.sqlite
 
 Generate a new application key
 
@@ -82,6 +82,10 @@ Run the database seeder and you're done
     normal@demo.com   
     sliver@demo.com
     gold@demo.com
+
+you can run test at sqlite in memory
+
+    php artisan test
 
 You can now access the server at http://localhost:8000
 
