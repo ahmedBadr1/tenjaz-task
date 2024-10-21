@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\UserTypes;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProductRequest extends FormRequest
@@ -26,7 +27,9 @@ class StoreProductRequest extends FormRequest
             "slug" => "nullable|string|max:255",
             "description" => "required|string",
             "image" => "required|image:jpeg,jpg,png|max:2048",
-            "price" => "required|numeric|gt:0",
+            "prices" => "required|array",
+            "prices.*.price" => "required|numeric|gt:0",
+            "prices.*.type" => "required|string|in:" . implode(',', UserTypes::toCases()),
             "is_active" => "required|boolean",
         ];
     }

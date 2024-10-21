@@ -21,4 +21,16 @@ class Product extends Model
            }
         });
     }
+
+    // A product has many price tiers
+    public function prices()
+    {
+        return $this->hasMany(PriceTier::class);
+    }
+
+    // Function to get price based on user type
+    public function getPriceForUser($type)
+    {
+        return $this->prices()->where('type', $type)->value('price') ?? null;
+    }
 }

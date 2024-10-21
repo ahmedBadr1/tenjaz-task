@@ -23,7 +23,7 @@ class ProductFactory extends Factory
             'slug' => Str::slug($name),
             'description' => fake()->realText(),
             'image' => fake()->imageUrl(),
-            'price' => fake()->numberBetween(10, 100),
+//            'price' => fake()->numberBetween(10, 100),
             'is_active' => fake()->boolean(),
         ];
     }

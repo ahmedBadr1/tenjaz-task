@@ -17,7 +17,6 @@ beforeEach(function () {
     $this->product = Product::factory()->create([
         'name' => 'Test Product',
         'description' => 'This is a test product.',
-        'price' => 100.00,
     ]);
 });
 
@@ -30,7 +29,6 @@ it('can create a product', function () {
     $productData = [
         'name' => 'New Product',
         'description' => 'Description for new product.',
-        'price' => 200.50,
         "image" => $image,
         "is_active" => true,
     ];
@@ -78,7 +76,6 @@ it('can update a product', function () {
     $newData = [
         'name' => 'Updated Product Name',
         'description' => 'Updated description.',
-        'price' => 100.50,
         "image" => $image,
         "is_active" => true,
     ];

@@ -14,13 +14,15 @@ class ProductResource extends MainResource
      */
     public function toArray(Request $request): array
     {
+        $userType = auth()->user()->type; // Get the current user type
+
         return [
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
             "description" => $this->description,
             'image' => $this->image($this->image),
-            'price' => $this->price,
+            'price' => $this->price($userType),
             'is_active' => $this->is_active,
         ];
     }
