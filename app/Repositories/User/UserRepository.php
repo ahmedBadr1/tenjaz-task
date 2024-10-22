@@ -76,7 +76,6 @@ class UserRepository implements UserRepositoryInterface
         if ($user) {
             $user->tokens()->delete();
         }
-        Auth::logout();
         return true;
     }
 }
