@@ -31,10 +31,10 @@ class ProductFactory extends Factory
     /**
      * Indicate that the model is active.
      */
-    public function active(): static
+    public function active($active = 1): static
     {
         return $this->state(fn (array $attributes) => [
-            'is_active' => true,
+            'is_active' => $active,
         ]);
     }
 }

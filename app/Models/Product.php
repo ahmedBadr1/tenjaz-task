@@ -34,8 +34,13 @@ class Product extends Model
         return $this->prices()->where('type', $type)->value('price') ?? null;
     }
 
-    public function isActiveScope($query,$isActive = 1)
+    public function scopeIsActive($query, $isActive = 1)
     {
+        // to get all statuses
+        if ($isActive == 'all'){
+            return $query ;
+        }
         return $query->where('is_active', $isActive);
     }
+
 }
