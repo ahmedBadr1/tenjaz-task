@@ -18,7 +18,7 @@ class ProductRepository implements ProductRepositoryInterface
      */
     public function getAllProductsByUserType(string $userType): Collection
     {
-        return Product::all()->map(function ($product) use ($userType) {
+        return Product::isActive()->get()->map(function ($product) use ($userType) {
             // Attach the correct price based on user type
             $priceField = $this->getPriceFieldForUserType($userType);
             $product->price = $product->$priceField; // Add the correct price to the product object
@@ -28,7 +28,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function all(): ?Collection
     {
-        return Product::all();
+        return Product::isActive()->get();
     }
 
     public function create(array $data): Product
@@ -65,7 +65,6 @@ class ProductRepository implements ProductRepositoryInterface
 
             $product->update($data);
         }
-
         return $product;
     }
 
@@ -77,6 +76,6 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function find($id): Product
     {
-        return Product::findOrFail($id);
+        return Product::isActive()->findOrFail($id);
     }
 }

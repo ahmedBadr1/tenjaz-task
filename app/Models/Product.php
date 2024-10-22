@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','description','image','price','slug','is_active'];
+    protected $fillable = ['name','description','image','slug','is_active'];
 
     public static function boot(): void
     {
@@ -32,5 +32,10 @@ class Product extends Model
     public function getPriceForUser($type)
     {
         return $this->prices()->where('type', $type)->value('price') ?? null;
+    }
+
+    public function isActiveScope($query,$isActive = 1)
+    {
+        return $query->where('is_active', $isActive);
     }
 }
